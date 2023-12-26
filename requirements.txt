@@ -1,0 +1,9 @@
+joblib==1.2.0
+jupyter==1.0.0
+pandas==1.5.3
+plotly==5.16.1
+scikit-learn==1.2.2
+seaborn==0.12.2
+opendatasets==0.1.22
+optuna==3.3.0
+xgboost==1.7.5
