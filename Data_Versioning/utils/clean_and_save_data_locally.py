@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 from datetime import datetime
-from preprocessing_pipeline import preprocessing_pipeline
+from utils.preprocessing_pipeline import preprocessing_pipeline
 
 
 def clean_and_save_data_locally(df, file_prefix):

@@ -16,7 +16,7 @@ def main():
     """
     
     # preprocessing
-    data_dir = os.path.join('~', 'Car-Prices-Prediction', 'Data_Versioning', 'data') # /Car-Prices-Prediction/Data_Versioning/utils
+    data_dir = os.path.join('Car-Prices-Prediction', 'data') # /Car-Prices-Prediction/Data_Versioning/utils
     train_data_dir = os.path.join(data_dir, 'raw','train.csv')
     raw_train_data = pd.read_csv(train_data_dir)
     raw_train_data.drop('ID', axis=1, inplace=True)
