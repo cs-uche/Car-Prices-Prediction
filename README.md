@@ -13,17 +13,17 @@ Our goal is to develop a robust predictive model that estimates car prices effec
 Embarking on the journey, the first mile is defining the problem scope – predicting car prices, a regression task. Dive into the data source, extracting valuable insights, and setting the foundation for our predictive odyssey.
 
 ### Exploratory Data Analysis
-In this leg of the journey, we interpret the language of data. Identify the target and features, understand their relationships, and ensure data quality through meticulous cleaning, validation, and scaling. Check out the insights and adventures in the [Exploration Notebook](/Car-Prices-Prediction/Data_Preprocessing_Exploration.ipynb).
-![car price distribution](/Car-Prices-Prediction/imgs/eda_car_price_distribution.png)
+In this leg of the journey, we interpret the language of data. Identify the target and features, understand their relationships, and ensure data quality through meticulous cleaning, validation, and scaling. Check out the insights and adventures in the [Exploration Notebook](/Data_Preprocessing_Exploration.ipynb).
+![car price distribution](/imgs/eda_car_price_distribution.png)
 
 
 ### Model Development
-Accelerating into model development, we craft multiple models, fine-tune hyperparameters, and evaluate performance on hold-out samples. It culminates in saving these models as our trusted travel companions. Uncover the journey in the [Model Development Notebook](/Car-Prices-Prediction/Model_Development.ipynb).
+Accelerating into model development, we craft multiple models, fine-tune hyperparameters, and evaluate performance on hold-out samples. It culminates in saving these models as our trusted travel companions. Uncover the journey in the [Model Development Notebook](Model_Development.ipynb).
 
 ### Data Versioning
-Our journey pauses to acknowledge the unsung hero – data. Delve into the significance of versioning, exploring both local and cloud storage approaches. Navigate this stretch in the [Data Versioning Guide](/Car-Prices-Prediction/Data_Versioning/README.md).
-![cloud data versionin](/Car-Prices-Prediction/imgs/cloud_data_versioning.png)
+Our journey pauses to acknowledge the unsung hero – data. Delve into the significance of versioning, exploring both local and cloud storage approaches. Navigate this stretch in the [Data Versioning Guide](/Data_Versioning/README.md).
+![cloud data versionin](/imgs/cloud_data_versioning.png)
 
 
 ### Model Resigstry
-As we approach the final stretch, the spotlight is on model management. Enter the Model Registry, a powerhouse for organizing and tracking models. Meet Mlflow, our tool of choice, excelling in experiment tracking, project building, and reigning as a model registry. Unveil the details in the [Model Registry Guide](/Car-Prices-Prediction/Model_Registry/README.md).
+As we approach the final stretch, the spotlight is on model management. Enter the Model Registry, a powerhouse for organizing and tracking models. Meet Mlflow, our tool of choice, excelling in experiment tracking, project building, and reigning as a model registry. Unveil the details in the [Model Registry Guide](/Model_Registry/README.md).

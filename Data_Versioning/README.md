@@ -17,8 +17,8 @@ Recognizing the limitations of local storage, the notebook concludes with a stra
 ## The Transformation
 Witness the transformation as we journey from local data versioning to the cloud. The accompanying visuals paint a compelling picture — a juxtaposition of the familiar local storage landscape against the horizon of cloud-based possibilities.
 * Local Data Versioning
-![Local Data Versioning](/Car-Prices-Prediction/imgs/local_data_versioning.png)
+![Local Data Versioning](/imgs/local_data_versioning.png)
 
 * Cloud  Data Versioning
 To cloud storage below
-![Cloud Data Versioning](/Car-Prices-Prediction/imgs/cloud_data_versioning.png)
+![Cloud Data Versioning](/imgs/cloud_data_versioning.png)
