@@ -38,7 +38,7 @@ def main(data_directory):
     
     try:
         raw_train_data = pd.read_csv(train_data_dir)
-        raw_train_data.drop('ID', axis=1, inplace=True)
+        raw_train_data = raw_train_data.drop('ID', axis=1)
         
         y = raw_train_data["Price"]
         X = raw_train_data.drop("Price", axis=1)
@@ -58,8 +58,12 @@ def main(data_directory):
             
             if os.path.exists(cleaned_train_path):
                 upload_cleaned_data(cleaned_train_path, bucket_name, 'train')
-            if os.path.exists(cleaned_train_path):
+                os.remove(cleaned_train_path)
+                
+            if os.path.exists(cleaned_val_path):
                 upload_cleaned_data(cleaned_val_path, bucket_name, 'val')
+                os.remove(cleaned_val_path)
+                
     except Exception as data_processing_error:
         click.echo(f"Error processing data: {data_processing_error}")
 

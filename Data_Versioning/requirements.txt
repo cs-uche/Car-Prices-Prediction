@@ -2,4 +2,4 @@ boto3
 click
 pandas
 numpy
-sklearn
+scikit-learn

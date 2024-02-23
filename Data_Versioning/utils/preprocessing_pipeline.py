@@ -4,16 +4,18 @@ import pandas as pd
 import numpy as np
 
 from sklearn.compose import make_column_transformer
-from sklearn.preprocessing import FunctionTransformer
+from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, OrdinalEncoder
 
 
-def preprocessing_pipeline(numeric_features_to_extract, passthrough_features, drop_features):
+def preprocessing_pipeline(numeric_features_to_extract, ordinal_features, categorical_features, passthrough_feature, drop_features):
     """
     Perform pre-processing steps for features and return a numeric representation of all features for model training.
 
     Parameters:
     - numeric_features_to_extract (list): List of column names containing numeric features to extract.
-    - passthrough_features (list): List of column names to include as-is without any transformation.
+    - ordinal_features (list): List of column names containing ordinal features to transform.
+    - categorical_features (list): List of column names containing categorical features to transform.
+    - passthrough_feature (list): List of column names to skip over during pre-processing.
     - drop_features (list): List of column names to drop during pre-processing.
 
     Returns:
@@ -47,11 +49,11 @@ def preprocessing_pipeline(numeric_features_to_extract, passthrough_features, dr
         - X_copy (DataFrame): DataFrame with preprocessed 'Levy' column.
         """
         X_copy = X.copy()
-        X_copy["Levy"].replace("-", None, inplace=True)
+        X_copy["Levy"] = X_copy["Levy"].replace("-", None)
     
         X_copy['Levy'] = pd.to_numeric(X_copy['Levy'], errors='coerce')
         mean_levy_by_year = X_copy.groupby('Prod. year')['Levy'].mean()
-        mean_levy_by_year.fillna(0, inplace=True)
+        mean_levy_by_year = mean_levy_by_year.fillna(0)
         
         for year in X_copy['Prod. year'].unique():
             mask = (X_copy['Prod. year'] == year) & X_copy['Levy'].isnull()
@@ -64,7 +66,9 @@ def preprocessing_pipeline(numeric_features_to_extract, passthrough_features, dr
     column_transformer = make_column_transformer(
             (FunctionTransformer(preprocess_levy_and_fillna, validate=False), ['Prod. year', 'Levy']),
             (FunctionTransformer(extract_numeric_features, kw_args={'columns_to_extract': numeric_features_to_extract}), numeric_features_to_extract),
-            ("passthrough", passthrough_features),
+            (OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1, dtype=int), ordinal_features),
+            (OneHotEncoder(drop='if_binary', handle_unknown='ignore', sparse_output=False), categorical_features),
+            ("passthrough", passthrough_feature),
             ("drop", drop_features)
     )
 
