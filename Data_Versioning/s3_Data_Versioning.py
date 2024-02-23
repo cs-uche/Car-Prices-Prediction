@@ -54,7 +54,7 @@ def main(data_directory):
         
         if(create_bucket(bucket_name)):
             cleaned_train_path = clean_and_save_data_locally(train_df, data_directory, 'train')
-            cleaned_val_path = clean_and_save_data_locally(train_df, data_directory, 'val')
+            cleaned_val_path = clean_and_save_data_locally(val_df, data_directory, 'val')
             
             if os.path.exists(cleaned_train_path):
                 upload_cleaned_data(cleaned_train_path, bucket_name, 'train')
