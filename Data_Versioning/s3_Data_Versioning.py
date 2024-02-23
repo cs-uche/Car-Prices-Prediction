@@ -13,7 +13,8 @@ from utils.upload_cleaned_data import upload_cleaned_data
 
 @click.command()
 @click.argument('data_directory', type=click.Path(exists=True), default=".")
-def main(data_directory):
+@click.option('--header', '-h', is_flag=True, default=True, help='Specify if the header is saved')
+def main(data_directory, header):
     """
     Main function for saving the cleaned data to s3
     """
@@ -53,8 +54,8 @@ def main(data_directory):
         region = boto3.session.Session().region_name
         
         if(create_bucket(bucket_name)):
-            cleaned_train_path = clean_and_save_data_locally(train_df, data_directory, 'train')
-            cleaned_val_path = clean_and_save_data_locally(val_df, data_directory, 'val')
+            cleaned_train_path = clean_and_save_data_locally(train_df, data_directory, 'train', header)
+            cleaned_val_path = clean_and_save_data_locally(val_df, data_directory, 'val', header)
             
             if os.path.exists(cleaned_train_path):
                 upload_cleaned_data(cleaned_train_path, bucket_name, 'train')
