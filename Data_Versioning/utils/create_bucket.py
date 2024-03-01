@@ -2,6 +2,7 @@
 
 import boto3
 import logging
+import sys
 from botocore.exceptions import ClientError
 
 
@@ -28,8 +29,9 @@ def create_bucket(bucket_name, region=None):
         else:
             s3.create_bucket(Bucket=bucket_name)
         
-    except ClientError as e:
-        logging.error(f"Error creating S3 bucket {bucket_name}: {e}")
-        return False
+    except ClientError as client_err:
+        logging.error(f"Error creating S3 bucket {bucket_name}: {client_err}")
+        logging.error("Exit Code: ", client_err.response['ResponseMetadata']['HTTPStatusCode'])
+        sys.exit(1)
     
-    return True
+    return 200

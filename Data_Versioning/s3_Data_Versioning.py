@@ -17,8 +17,15 @@ from utils.upload_cleaned_data import upload_cleaned_data
 def main(data_directory, header):
     """
     Main function for saving the cleaned data to s3
+
+    Dependency:
+    - utils.create_bucket
+    - utils.clean_and_save_data_locally
+    - utils.upload_cleaned_data
     """
     
+    STATUS_OK = 200
+
     if data_directory == os.path.abspath("."):
         data_directory = os.path.join(data_directory, "data")
     
@@ -53,7 +60,7 @@ def main(data_directory, header):
         bucket_name = "car-prices-prediction"
         region = boto3.session.Session().region_name
         
-        if(create_bucket(bucket_name)):
+        if(create_bucket(bucket_name) == STATUS_OK):
             cleaned_train_path = clean_and_save_data_locally(train_df, data_directory, 'train', header)
             cleaned_val_path = clean_and_save_data_locally(val_df, data_directory, 'val', header)
             
@@ -67,6 +74,7 @@ def main(data_directory, header):
                 
     except Exception as data_processing_error:
         click.echo(f"Error processing data: {data_processing_error}")
+        
 
 if __name__ == "__main__":
     main()
